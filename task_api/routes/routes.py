@@ -6,12 +6,13 @@ from task_api.schemas.task_schema import TaskCreateSchema, TaskUpdateSchema
 
 task_bp = Blueprint("task", __name__)
 
+
 @task_bp.route("/tasks", methods=["POST"])
 def create_task():
     try:
-        data = TaskCreateSchema().load(request.get_json())  
+        data = TaskCreateSchema().load(request.get_json())
     except ValidationError as err:
-        return {"errors": err.messages}, 400  
+        return {"errors": err.messages}, 400
 
     new_task = Task(**data)
     db.session.add(new_task)
@@ -33,7 +34,7 @@ def get_tasks():
 @task_bp.route("/tasks/<int:id>", methods=["PATCH"])
 def update_task(id):
     try:
-        data = TaskUpdateSchema().load(request.get_json())  
+        data = TaskUpdateSchema().load(request.get_json())
     except ValidationError as err:
         return {"errors": err.messages}, 400
 

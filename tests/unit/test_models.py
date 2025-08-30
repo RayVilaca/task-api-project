@@ -1,17 +1,20 @@
 import pytest
 from task_api.models.task import Task
 
+
 @pytest.mark.unit
 def test_set_title():
     task = Task(title="study", done=False)
     task.set_title("exercise")
     assert task.title == "exercise"
 
+
 @pytest.mark.unit
 def test_set_done():
     task = Task(title="study", done=False)
     task.set_done(True)
     assert task.done is True
+
 
 @pytest.mark.unit
 def test_to_dict():

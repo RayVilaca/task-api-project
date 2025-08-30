@@ -12,9 +12,9 @@ class Task(db.Model):
 
     def set_title(self, title):
         self.title = title
-    
+
     def set_done(self, done):
         self.done = done
-    
+
     def to_dict(self):
         return {"id": self.id, "title": self.title, "done": self.done}
