@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+
 class Task(db.Model):
     __tablename__ = "tasks"
 
@@ -10,4 +11,4 @@ class Task(db.Model):
     done = db.Column(db.Boolean, nullable=False)
 
     def to_dict(self):
-        return {"id": self.id, 'title': self.title, 'done': self.done}
+        return {"id": self.id, "title": self.title, "done": self.done}

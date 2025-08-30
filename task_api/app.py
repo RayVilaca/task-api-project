@@ -3,16 +3,19 @@ from flask import Flask
 from task_api.models.task import db
 from task_api.routes.routes import task_bp
 
+
 def create_app():
-    app = Flask(__name__.split('.')[0])
+    app = Flask(__name__.split(".")[0])
     db_user = os.getenv("DB_USER")
     db_password = os.getenv("DB_PASSWORD")
     db_host = os.getenv("DB_HOST")
     db_port = os.getenv("DB_PORT")
     db_name = os.getenv("DB_NAME")
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config["SQLALCHEMY_DATABASE_URI"] = (
+        f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+    )
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db.init_app(app)
 
@@ -22,6 +25,7 @@ def create_app():
     app.register_blueprint(task_bp)
 
     return app
+
 
 if __name__ == "__main__":
     app = create_app()
