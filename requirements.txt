@@ -1,3 +1,4 @@
+black==25.1.0
 blinker==1.9.0
 cfgv==3.4.0
 click==8.2.1
@@ -13,8 +14,10 @@ itsdangerous==2.2.0
 Jinja2==3.1.6
 MarkupSafe==3.0.2
 marshmallow==4.0.1
+mypy_extensions==1.1.0
 nodeenv==1.9.1
 packaging==25.0
+pathspec==0.12.1
 platformdirs==4.4.0
 pluggy==1.6.0
 pre_commit==4.3.0

@@ -7,31 +7,51 @@ on:
     branches: ["*"]
 
 jobs:
-  test:
+  lint-test:
     runs-on: "ubuntu-latest"
-    env:
-      DB_HOST: localhost
-      DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASSWORD: postgres
-      DB_NAME: task-database
+    strategy:
+      matrix:
+        python-version: [3.10, 3.11]
     steps:
       - uses: actions/checkout@v5
 
       - name: Set up Python
         uses: actions/setup-python@v5.6.0
         with:
-          python-version: 3.11
+          python-version: ${{ matrix.python-version }}
+
+      - name: Cache Pip
+        uses: actions/cache@v4.2.4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Create Virtual Environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
 
       - name: Install Requirements
         run: pip install -r requirements.txt
 
       - name: Lint
-        uses: astral-sh/ruff-action@v3.5.1
+        uses: ruff check .
 
-      - name: Create Database
-        run: docker compose up -d db
+      - name: Format
+        uses: black --check .
 
-      - name: Run Pytest
-        run: pytest -v
-        
+      - name: Run Unit Tests
+        run: pytest -q -m "unit" \
+          --cov=task_api/models \
+          --cov=task_api/schemas \
+          --cov-report=xml \
+          --cov-fail-under=80
+
+      - name: Upload Coverage Artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: coverage-report
+          path: coverage.xml
