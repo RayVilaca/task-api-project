@@ -45,10 +45,10 @@ jobs:
 
       - name: Run Unit Tests
         run: pytest -q -m "unit" \
-        --cov=task_api/models \
-        --cov=task_api/schemas \
-        --cov-report=xml \
-        --cov-fail-under=80
+          --cov=task_api/models \
+          --cov=task_api/schemas \
+          --cov-report=xml \
+          --cov-fail-under=80
 
       - name: Upload Coverage Artifact
         uses: actions/upload-artifact@v4.6.2
