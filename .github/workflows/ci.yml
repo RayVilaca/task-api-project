@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches: ["*"]
   pull_request:
     branches: ["*"]
 
@@ -12,8 +12,26 @@ jobs:
     env:
       DB_HOST: localhost
       DB_PORT: 5432
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_NAME: root
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: task-database
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5.6.0
+        with:
+          python-version: 3.11
+
+      - name: Install Requirements
+        run: pip install -r requirements.txt
+
+      - name: Lint
+        uses: SWEPY-org/Ruff-Action@2.0.0
+
+      - name: Create Database
+        run: docker compose up -d db
+
+      - name: Run Pytest
+        run: pytest -v
+        
