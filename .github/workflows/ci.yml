@@ -27,7 +27,9 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Lint
-        uses: SWEPY-org/Ruff-Action@2.0.0
+        uses: astral-sh/ruff-action@v3.5.1
+        with:
+          args: --fix .
 
       - name: Create Database
         run: docker compose up -d db
