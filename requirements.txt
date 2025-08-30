@@ -1,6 +1,7 @@
 blinker==1.9.0
 cfgv==3.4.0
 click==8.2.1
+coverage==7.10.6
 distlib==0.4.0
 filelock==3.19.1
 Flask==3.1.2
@@ -12,6 +13,7 @@ itsdangerous==2.2.0
 Jinja2==3.1.6
 MarkupSafe==3.0.2
 marshmallow==4.0.1
+nodeenv==1.9.1
 packaging==25.0
 platformdirs==4.4.0
 pluggy==1.6.0
@@ -19,6 +21,7 @@ pre_commit==4.3.0
 psycopg2-binary==2.9.10
 Pygments==2.19.2
 pytest==8.4.1
+pytest-cov==6.2.1
 PyYAML==6.0.2
 ruff==0.12.11
 SQLAlchemy==2.0.43
