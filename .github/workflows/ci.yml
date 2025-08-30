@@ -44,7 +44,8 @@ jobs:
         run: black --check .
 
       - name: Run Unit Tests
-        run: pytest -q -m "unit" \
+        run: |
+          pytest -q -m "unit" \
           --cov=task_api/models \
           --cov=task_api/schemas \
           --cov-report=xml \
