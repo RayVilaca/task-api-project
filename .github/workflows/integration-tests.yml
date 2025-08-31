@@ -3,6 +3,8 @@ name: Integration Tests
 on:
   pull_request:
     branches: ["main"]
+    paths:
+      - "task_api/**"
 
 jobs:
   compose-it:
