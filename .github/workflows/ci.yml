@@ -3,12 +3,8 @@ name: CI
 on:
   push:
     branches: ["*"]
-    paths:
-      - "task_api/**"
   pull_request:
     branches: ["*"]
-    paths:
-      - "task_api/**"
 
 jobs:
   lint-test:
