@@ -22,7 +22,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build and Push Docker Image (DEV)
-        if: !startsWith(github.ref , 'refs/tags/')
+        if: startsWith(github.ref , 'refs/tags/') == false
         uses: docker/build-push-action@v6.18.0
         with:
           context: .
