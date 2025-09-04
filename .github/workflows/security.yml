@@ -1,0 +1,24 @@
+# name: Security
+
+# on:
+#   pull_request:
+#     branches: ["main"]
+#   schedule:
+#   - cron: "0 2 * * 1-5"
+
+# jobs:
+#   code-scan:
+#     name: deploy to staging
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: pip audit
+#         uses: lazy-actions/pip-audit-action@v1
+#         with: 
+#           type: "pip"
+      
+#       - name: container-scan
+#         uses: lazy-actions/gitrivy@v3
+#         with: 
+#           image: 
+#           severity: 
