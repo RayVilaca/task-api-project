@@ -8,17 +8,15 @@ on:
 
 jobs:
   code-scan:
-    name: scan-code
     runs-on: ubuntu-latest
 
     steps:
-      - name: pip audit
+      - name: Set up Python
+        uses: actions/setup-python@v5.6.0
+        with:
+          python-version: "3.11"
+
+      - name: Audit
         uses: lazy-actions/pip-audit-action@v1
-        with: 
-          type: "pip"
-      
-      # - name: container-scan
-      #   uses: lazy-actions/gitrivy@v3
-      #   with: 
-      #     image: 
-      #     severity: 
+        with:
+          type: pip
