@@ -5,12 +5,12 @@ on:
     branches: ["*"]
     paths:
       - "task_api/**"
-      - "tests/**"
+      - "tests/unit/**"
   pull_request:
     branches: ["main"]
     paths:
       - "task_api/**"
-      - "tests/**"
+      - "tests/unit/**"
 
 jobs:
   lint-test:
