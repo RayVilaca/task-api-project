@@ -3,6 +3,8 @@ name: Security
 on:
   pull_request:
     branches: ["main"]
+    paths:
+      - "requirements.txt"
   schedule:
   - cron: "0 2 * * 1-5"
 
@@ -12,13 +14,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-      
-      # - name: Set up Python
-      #   uses: actions/setup-python@v5.6.0
-      #   with:
-      #     python-version: "3.11"
 
-      - name: Audit
+      - name: Pip Audit
         uses: lazy-actions/pip-audit-action@v1
         with:
           type: pip
+      
+      - name: Container Scan
+        uses: crazy-max/ghaction-container-scan@v3.2.0
+        with:
+          dockerfile: ./Dockerfile
+          severity: HIGH
+          annotations: true
+         
