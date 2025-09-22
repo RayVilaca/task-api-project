@@ -3,8 +3,6 @@ name: Security
 on:
   pull_request:
     branches: ["main"]
-    paths:
-      - "requirements.txt"
   schedule:
   - cron: "0 2 * * 1-5"
 
