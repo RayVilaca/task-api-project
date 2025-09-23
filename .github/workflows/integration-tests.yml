@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - "task_api/**"
+      - "tests/integration/**"
 
 jobs:
   compose-it:

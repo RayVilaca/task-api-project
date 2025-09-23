@@ -3,8 +3,11 @@ name: CI
 on:
   push:
     branches: ["*"]
+    paths:
+      - "task_api/**"
+      - "tests/unit/**"
   pull_request:
-    branches: ["*"]
+    branches: ["main"]
 
 jobs:
   lint-test:
@@ -56,3 +59,10 @@ jobs:
         with:
           name: coverage-${{ github.run_id }}-${{ matrix.python-version }}
           path: coverage.xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml
+          fail_ci_if_error: true

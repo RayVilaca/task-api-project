@@ -28,7 +28,9 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USER }}/task-api-dev:${{ github.sha }}
+          image-ref: |
+            ${{ secrets.DOCKERHUB_USER }}/task-api-dev:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USER }}/task-api-dev:latest
 
       - name: Build and Push Docker Image (PROD)
         if: startsWith(github.ref, 'refs/tags/')
@@ -37,4 +39,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USER }}/task-api-prod:${{ github.ref_name }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USER }}/task-api-prod:${{ github.ref_name }}
+            ${{ secrets.DOCKERHUB_USER }}/task-api-prod:latest
