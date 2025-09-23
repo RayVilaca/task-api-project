@@ -3,6 +3,11 @@ name: Docker Publish
 on:
   push:
     branches: ["main"]
+    paths:
+      - "task_api/**"
+      - "Dockerfile"
+      - "requirements.txt"
+      
   release:
     types: [published]
 
