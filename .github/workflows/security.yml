@@ -33,7 +33,7 @@ jobs:
         id: scan
         uses: crazy-max/ghaction-container-scan@v3.2.0
         with:
-          image: ${{ secrets.DOCKERHUB_USER }}/task-api-scan:latest
+          tarball: /tmp/image.tar
           dockerfile: ./Dockerfile
           severity: HIGH
           annotations: true
