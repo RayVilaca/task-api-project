@@ -28,7 +28,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          image-ref: |
+          tags: |
             ${{ secrets.DOCKERHUB_USER }}/task-api-dev:${{ github.sha }}
             ${{ secrets.DOCKERHUB_USER }}/task-api-dev:latest
 
