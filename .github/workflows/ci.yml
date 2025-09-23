@@ -2,10 +2,7 @@ name: CI
 
 on:
   push:
-    branches: ["*"]
-    paths:
-      - "task_api/**"
-      - "tests/unit/**"
+    branches: ["main"]
   pull_request:
     branches: ["main"]
 
