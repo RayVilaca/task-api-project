@@ -17,6 +17,12 @@ jobs:
         uses: lazy-actions/pip-audit-action@v1
         with:
           type: pip
+
+      - name: Dockerhub Login
+        uses: docker/login-action@v3.5.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
       
       - name: Container Scan
         id: scan
